@@ -1,72 +1,78 @@
-🛡️ AI Cybersecurity Assistant
+# 🛡️ AI Cybersecurity Assistant
 
-AI Cybersecurity Assistant is an interactive application that uses the MITRE ATT&CK dataset and AI (LLaMA2 via Ollama) to provide structured educational answers to cybersecurity questions.
+AI Cybersecurity Assistant is an interactive AI‑powered application that uses the
+MITRE ATT&CK Enterprise dataset and local LLaMA2 inference via Ollama to provide
+structured explanations of cybersecurity techniques and threats.
 
-🚀 Project Overview
+---
 
-Offers explanations for attack and defense techniques in cybersecurity.
+## 🚀 Project Overview
 
-Shows Threat Explanation, Attacker Perspective, Defender Perspective, and Risk Level.
+This project lets users ask cybersecurity questions and receive detailed,
+structured explanations including threat context, attacker vs defender
+perspectives, risk level, and summaries. It uses retrieval‑augmented
+generation (ChromaDB) as a fallback for broader context.
 
-Conversations can be exported as PDF for reference.
+---
 
-📂 Project Contents
+## 📄 Dataset Summary
 
-app.py – main Streamlit application
+This project uses the MITRE ATT&CK Enterprise JSON dataset, which includes
+attack techniques with unique IDs (e.g., T1566) and official descriptions.
 
-enterprise-attack.json – MITRE ATT&CK dataset
+The dataset is used to provide accurate context when a Cybersecurity Technique
+ID is mentioned in the user’s question.
 
-chroma_db/ – optional storage for RAG (Retrieval-Augmented Generation)
+---
 
-Dependencies: FPDF, ChromaDB, Streamlit, Subprocess
+## 🔧 Models & Tools Used
 
-📝 Dataset Summary
+| Component | Purpose |
+|-----------|---------|
+| **LLaMA2 via Ollama CLI** | Local AI reasoning and response generation |
+| **ChromaDB** | Vector store for document retrieval |
+| **Streamlit** | Web‑based interactive UI |
+| **FPDF** | Export conversations as PDF |
+| **MITRE ATT&CK JSON** | Official cybersecurity technique data |
 
-MITRE ATT&CK Enterprise dataset: includes attack techniques, Technique IDs (TIDs), and official descriptions.
+---
 
-Used for quick lookup of techniques and providing accurate context in answers.
+## 📦 Installation & Setup
 
-⚙️ Models & Tools
-
-LLaMA2 via Ollama CLI for generating AI explanations.
-
-ChromaDB for document retrieval when a technique is not directly matched.
-
-Streamlit for building the interactive user interface.
-
-FPDF for exporting conversation logs to PDF.
-
-🛠️ How to Run the Demo
-
-Clone the repository:
-
+1. Clone the repository:
+```bash
 git clone https://github.com/SohilaAshat/AI-Cybersecurity-Assistant.git
 cd AI-Cybersecurity-Assistant
-
 Install dependencies:
 
 pip install -r requirements.txt
 
-If requirements.txt is not available, install manually:
+Ensure the dataset:
+Place enterprise-attack.json in the same directory as app.py.
 
-pip install streamlit fpdf chromadb
+Pull the AI model:
 
-Ensure dataset is present:
+ollama pull llama2
 
-Place enterprise-attack.json in the same folder as app.py.
-
-Run the application:
+Run the app:
 
 streamlit run app.py
+🧠 Usage
 
-Using the interface:
+Type a question about cybersecurity threats into the input.
 
-Type your question in the input box.
+Select an explanation level (Beginner, Intermediate, Expert).
 
-Use Suggested Questions for quick examples.
+Select a mode (Standard, Attacker View, Defender View).
 
-Choose Theme, Explanation Level, and Mode in the sidebar.
+Use suggested questions or enter your own.
 
-Exporting conversation:
+Export the conversation to PDF if needed.
 
-Click Export Conversation to PDF after your chat to download a log.
+💡 Suggested Questions
+Question	Level	Mode
+Explain MITRE ATT&CK T1566	Beginner	Standard
+How does Credential Dumping work?	Intermediate	Attacker View
+What is SQL Injection?	Beginner	Standard
+Explain Ransomware attack lifecycle	Expert	Defender View
+How does Privilege Escalation occur?	Intermediate	Standard
